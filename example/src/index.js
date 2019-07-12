@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import { createMediator, MediatorProvider } from "react-mediator";
 
-import App from "./App";
+import App from "./ui/App";
 import "./index.css";
 
 const mediator = createMediator();
