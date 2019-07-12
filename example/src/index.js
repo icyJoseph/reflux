@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { createMediator, MediatorProvider } from "../../lib";
+import { createMediator, MediatorProvider } from "react-mediator";
 
 import App from "./App";
 import "./index.css";

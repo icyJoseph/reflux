@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Mediated, useNotifyParticipants } from "../../lib";
+import { Mediated, useNotifyParticipants } from "react-mediator";
 
 const INC = "+";
 const DEC = "-";
