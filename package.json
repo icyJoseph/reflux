@@ -6,8 +6,11 @@
   "scripts": {
     "transpile": "babel lib -d transpiled --source-maps",
     "build": "rollup -c --sourcemap",
-    "start-demo": "rm -rf example/dist && parcel example/src/index.html --out-dir example/dist --open",
+    "start": "rm -rf example/dist && parcel example/src/index.html --out-dir example/dist --open",
     "build-demo": "parcel build example/src/index.html --out-dir example/dist --public-url ./"
+  },
+  "alias": {
+    "react-mediator": "./dist"
   },
   "peerDependencies": {
     "react": "^16.8.1",
@@ -21,8 +24,8 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "parcel-bundler": "^1.12.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-bundle-size": "^1.0.3"
