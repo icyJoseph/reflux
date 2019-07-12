@@ -1,4 +1,5 @@
 node_modules
 dist
+transpiled
 example/dist
 .cache

@@ -1,24 +1,30 @@
 {
   "name": "react-mediator",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel watch lib/index.js",
-    "build": "parcel build lib/index.js --global react-mediator",
-    "start-demo": "parcel example/src/index.html --out-dir example/dist --open",
+    "transpile": "babel lib -d transpiled --source-maps",
+    "build": "rollup -c --sourcemap",
+    "start-demo": "rm -rf example/dist && parcel example/src/index.html --out-dir example/dist --open",
     "build-demo": "parcel build example/src/index.html --out-dir example/dist --public-url ./"
   },
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.0",
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rollup": "^1.16.7",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-bundle-size": "^1.0.3"
   }
 }
