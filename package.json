@@ -7,7 +7,8 @@
     "transpile": "babel lib -d transpiled --source-maps",
     "build": "rollup -c --sourcemap",
     "start": "rm -rf example/dist && parcel example/src/index.html --out-dir example/dist --open",
-    "build-demo": "parcel build example/src/index.html --out-dir example/dist --public-url ./"
+    "build-demo": "parcel build example/src/index.html --out-dir example/dist --public-url ./",
+    "prepublishOnly": "yarn build:lib"
   },
   "alias": {
     "react-mediator": "./dist"
