@@ -9,3 +9,5 @@
 /yarn.lock
 /transpiled
 /.babelrc
+/coverage
+/jest.config.js
