@@ -5,7 +5,7 @@ export default {
   input: "./lib/index.js",
   output: {
     file: "./dist/index.js",
-    format: "esm"
+    format: "es"
   },
   plugins: [
     babel({
