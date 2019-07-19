@@ -1,5 +1,6 @@
 {
   "name": "reflux",
+  "description": "Implementation of Flux, using Reducers and Hooks, heavily.",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
