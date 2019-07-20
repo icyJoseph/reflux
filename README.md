@@ -1,8 +1,10 @@
 # Reflux
 
-> Similar Approach to Flux
+> Playing around ⚗🧪⚛️
 
 Contructs a bus for your React Components.
+
+> Similar Approach to Flux
 
 The bus is reached through a notification function that takes in a payload and passes it to all bus participants. Each participant interfaces with the bus through a `reducer`. Therefore the payload must be an action, although there is no checks for this in place at the moment.
 
