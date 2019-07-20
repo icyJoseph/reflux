@@ -8,6 +8,24 @@ The bus is reached through a notification function that takes in a payload and p
 
 Since reducers only recalculate for certain actions, it is guaranteed that the participants do not render unnecessarily. The package requires the usage of selectors, and the result of evaluating the reducer state against the selector is memoized. Furthermore, the participants are also memoized!
 
+## Road Map
+
+Order in highest priority:
+
+- Refine the API. Should Connect be a HoC at all? Perhaps all of the API should be based on Hooks.
+
+- Study whether or not it makes sense to have async notifications. Hooks allows consumers of the pakcage to configure this easily.
+
+- Use a running flag and buffer notifications. Today every time a notification is sent, the main thread is blocked until all participants are notified.
+
+- Explore performance benchmarks.
+
+- Study whether or not to reimplment the Global Store.
+
+- Study whether or not to allow only one child in Connect or to make turn the it into redux connect.
+
+- One Selector per child?
+
 ## About the Implementation
 
 - It uses React Hooks.
@@ -81,17 +99,3 @@ ReactDOM.render(
 ```
 
 Unlike Redux, there is no need to pass a store, or any sort of reducer at this point. The provider exists to give your the React tree access to a Context in which it is possible to add participants and notify them.
-
-## Road Map
-
-- Study whether or not it makes sense to have async notifications. Hooks allows consumers of the pakcage to configure this easily.
-
-- Use a running flag and buffer notifications. Today every time a notification is sent, the main thread is blocked until all participants are notified.
-
-- Explore performance benchmarks.
-
-- Study whether or not to reimplment the Global Store.
-
-- Study whether or not to allow only one child in Connect or to make turn the it into redux connect.
-
-- One Selector per child?
