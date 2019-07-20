@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { createMediator, MediatorProvider } from "react-mediator";
+import { Provider } from "reflux";
 
 import App from "./ui/App";
 import "./index.css";
 
-const mediator = createMediator();
-
 ReactDOM.render(
-  <MediatorProvider mediator={mediator}>
+  <Provider>
     <App />
-  </MediatorProvider>,
+  </Provider>,
   document.getElementById("root")
 );
