@@ -24,8 +24,8 @@ export function Todo({
               style={{
                 backgroundColor: "rgb(235, 236, 240)",
                 display: "flex",
+                margin: "0.5em",
                 flexDirection: "column",
-                width: "250px",
                 padding: "8px 8px 0px"
               }}
             >
