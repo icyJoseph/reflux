@@ -11,7 +11,7 @@ import { CHANGE_TODO_STATUS } from "../reducers/todos";
 
 function handleOnDragEnd(result) {
   console.log("onDragEnd", result);
-  if (!result.destination || result.destination.droppableId === "main") {
+  if (!result.destination) {
     return {};
   }
   return {

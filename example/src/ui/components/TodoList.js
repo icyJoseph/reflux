@@ -14,22 +14,19 @@ const selectTodosByStatus = listStatus => state =>
     .filter(({ status }) => status === listStatus)
     .sort((a, b) => a.index - b.index);
 
-export function TodoList({ status, dndRef, droppableProps, dragHandleProps }) {
+export function TodoList({ status }) {
   const selector = React.useCallback(selectTodosByStatus(status), [status]);
   const todos = useConnect({ reducer, initialState, selector }); // bad pattern, creates 4 reducers :D
   console.log(todos);
 
   return (
     <div
-      ref={dndRef}
       style={{
         display: "flex",
         flex: 1,
         flexDirection: "column",
         margin: "8px"
       }}
-      {...droppableProps}
-      {...dragHandleProps}
     >
       <div style={{ display: "flex", justifyContent: "center" }}>{status}</div>
       <Droppable droppableId={status}>
@@ -52,6 +49,4 @@ export function TodoList({ status, dndRef, droppableProps, dragHandleProps }) {
   );
 }
 
-export default React.forwardRef((props, ref) => (
-  <TodoList dndRef={ref} {...props} />
-));
+export default TodoList;
