@@ -16,7 +16,9 @@ Order in highest priority:
 
 - Refine the API. Should Connect be a HoC at all? Perhaps all of the API should be based on Hooks.
 
-- Study whether or not it makes sense to have async notifications. Hooks allows consumers of the pakcage to configure this easily.
+> A new API has been defined, for now named `useConnect`
+
+- Study whether or not it makes sense to have async notifications. Hooks allows consumers of the package to configure this easily.
 
 - Use a running flag and buffer notifications. Today every time a notification is sent, the main thread is blocked until all participants are notified.
 
@@ -38,7 +40,7 @@ Order in highest priority:
 
 ## API
 
-Reflux has three APIs.
+Reflux has four APIs.
 
 ### Provider
 
@@ -56,7 +58,7 @@ Provider takes in zero props!
 </Provider>
 ```
 
-### Connect
+### Connect [deprecated - deleting soon]
 
 > React Component
 
@@ -75,6 +77,20 @@ In turn the result of `selector(state)` is used to memoize the children rendered
 > If the props passed to children change, then we render them again
 
 > Notice that the Context API is not used to broadcast the changes
+
+### useConnect
+
+Provides a React hook, the result of which is heavily memoized.
+
+```js
+const result = useConnect(reduer, initialState, selector, initializer);
+```
+
+The selector and initializer are optional. They default to indentity function.
+
+The reducer and initialState are mandatory. Under special circumstances the initialState could be undefined.
+
+The `useReducer` hook used internally, lazily initializes the reducer when the initializer is present. The initializer takes in the initialState as argument and outputs the actual initial state of the reducer. As long as you return valid state from the initializer, then the initialState could be undefined.
 
 ### useNotify
 
