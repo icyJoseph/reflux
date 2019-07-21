@@ -28,7 +28,7 @@ export function App() {
   const notifyChangeTodoStatus = e => notify(handleOnDragEnd(e));
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "rgb(76, 154, 255)" }}>
+    <div style={{ minHeight: "100vh" }}>
       <Header>
         <TodoCounter />
       </Header>

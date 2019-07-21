@@ -28,8 +28,7 @@ export function Todos() {
     <div
       style={{
         display: "inline-flex",
-        minWidth: "100vw",
-        backgroundColor: "rgb(76, 154, 255)"
+        minWidth: "100vw"
       }}
     >
       {TODO_TYPES.map((status, index) => (

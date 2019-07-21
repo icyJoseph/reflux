@@ -26,7 +26,8 @@ export function Todo({
                 display: "flex",
                 margin: "0.5em",
                 flexDirection: "column",
-                padding: "8px 8px 0px"
+                padding: "8px 8px 0px",
+                color: "#282828"
               }}
             >
               <div>{title}</div>

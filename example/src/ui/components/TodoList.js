@@ -16,7 +16,15 @@ export function TodoList({ status, todos = [] }) {
         margin: "8px"
       }}
     >
-      <div style={{ display: "flex", justifyContent: "center" }}>{status}</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          textTransform: "capitalize"
+        }}
+      >
+        {status}
+      </div>
       <Droppable droppableId={status}>
         {(provided, snapshot) => (
           <>

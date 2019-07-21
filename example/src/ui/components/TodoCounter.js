@@ -16,7 +16,12 @@ function reducer(count, action) {
 }
 
 function TodoCounter({ count = 0 }) {
-  return <div>{count}</div>;
+  return (
+    <div>
+      <div>Total: {count}</div>
+      <div>Closed: {count}</div>
+    </div>
+  );
 }
 
 // function Buttons() {
