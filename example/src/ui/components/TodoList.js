@@ -1,29 +1,24 @@
 import React from "react";
 
-import Todo from "./Todo";
 import { Droppable } from "react-beautiful-dnd";
+import { useConnect } from "reflux";
 
-const fakeTodos = [
-  {
-    id: "a",
-    title: "a",
-    description: "description-a",
-    createdAt: "a",
-    status: "a",
-    finishedAt: "a"
-  },
-  {
-    id: "b",
-    title: "a",
-    description: "description-a",
-    createdAt: "a",
-    status: "a",
-    finishedAt: "a"
-  }
-];
+import reducer from "../../reducers/todos";
 
-export function TodoList({ status, dndRef, droppableProps }) {
-  const todos = [...fakeTodos]; // should come from reducer or props
+import Todo from "./Todo";
+
+import initialState from "../../data/mock";
+
+const selectTodosByStatus = listStatus => state =>
+  state
+    .filter(({ status }) => status === listStatus)
+    .sort((a, b) => a.index - b.index);
+
+export function TodoList({ status, dndRef, droppableProps, dragHandleProps }) {
+  const selector = React.useCallback(selectTodosByStatus(status), [status]);
+  const todos = useConnect({ reducer, initialState, selector }); // bad pattern, creates 4 reducers :D
+  console.log(todos);
+
   return (
     <div
       ref={dndRef}
@@ -34,6 +29,7 @@ export function TodoList({ status, dndRef, droppableProps }) {
         margin: "8px"
       }}
       {...droppableProps}
+      {...dragHandleProps}
     >
       <div style={{ display: "flex", justifyContent: "center" }}>{status}</div>
       <Droppable droppableId={status}>
@@ -42,14 +38,10 @@ export function TodoList({ status, dndRef, droppableProps }) {
             <div
               ref={provided.innerRef}
               style={{ minHeight: "250px", paddingBottom: "8px" }}
+              {...provided.droppableProps}
             >
               {todos.map(({ id, ...todo }, index) => (
-                <Todo
-                  key={`${id}${status}`}
-                  id={`${id}${status}`}
-                  index={index}
-                  {...todo}
-                />
+                <Todo key={`${id}${status}`} id={id} index={index} {...todo} />
               ))}
             </div>
             {provided.placeholder}

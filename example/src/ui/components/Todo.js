@@ -17,21 +17,21 @@ export function Todo({
         <>
           <div
             ref={provided.innerRef}
-            style={{
-              backgroundColor: "rgb(235, 236, 240)",
-              display: "flex",
-              flexDirection: "column",
-              opacity: "inherit",
-              userSelect: "none",
-              width: "250px",
-              padding: "8px 8px 0px",
-              transition: "background-color 0.2s ease 0s, opacity 0.1s ease 0s"
-            }}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <div>{title}</div>
-            <div>{description}</div>
+            <div
+              style={{
+                backgroundColor: "rgb(235, 236, 240)",
+                display: "flex",
+                flexDirection: "column",
+                width: "250px",
+                padding: "8px 8px 0px"
+              }}
+            >
+              <div>{title}</div>
+              <div>{description}</div>
+            </div>
           </div>
           {provided.placeholder}
         </>
