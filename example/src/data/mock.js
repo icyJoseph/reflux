@@ -1,7 +1,7 @@
-import { NEW } from "./constants";
+import { NEW, ONGOING, REVIEW, DONE } from "./constants";
 
-const initialTodoState = [
-  {
+const initialTodoState = {
+  a: {
     id: "a",
     index: 0,
     title: "Study Rust",
@@ -10,7 +10,7 @@ const initialTodoState = [
     status: NEW,
     finishedAt: null
   },
-  {
+  b: {
     id: "b",
     index: 1,
     title: "CSS Animations",
@@ -19,6 +19,6 @@ const initialTodoState = [
     status: NEW,
     finishedAt: null
   }
-];
+};
 
 export default initialTodoState;

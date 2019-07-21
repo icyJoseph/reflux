@@ -1,50 +1,35 @@
-// Actions Types
-export const ADD_TODO = "add-todo";
-export const REMOVE_TODO = "remove-todo";
-export const CHANGE_TODO_STATUS = "change-todo-status";
+import { NEW, ONGOING, REVIEW, DONE } from "../data/constants";
 
-// Actions
-export const addTodo = todo => ({ type: ADD_TODO, todo });
-export const removeTodo = todo => ({ type: REMOVE_TODO, todo });
-export const changeTodoStatus = (todo, newStatus) => ({
-  type: CHANGE_TODO_STATUS,
-  todoId,
-  newStatus,
-  newIndex
-});
+// Actions Types
+export const MOVE_TODO = "move-todo";
+export const CHANGE_TODO_STATUS = "change-todo-status";
 
 export function reducer(state, action) {
   switch (action.type) {
-    case ADD_TODO:
-      return [...state, todo];
-    case REMOVE_TODO:
-      return state.filter(todo => todo !== action.todo.id);
-    case CHANGE_TODO_STATUS:
-      const index = state.findIndex(todo => todo.id === action.todoId); // find location
-      const [todo = {}] = state.slice(index, index + 1); // safely copy the todo from state
-      const displacedIndex = state.findIndex(
-        todo =>
-          todo.status === action.newStatus && todo.index === action.newIndex
-      ); // are we switching places with a todo?
-
-      const [displacedTodo = {}] = state.slice(
-        displacedIndex,
-        displacedIndex + 1
-      );
-      const result = state.slice(0); // copy the state
-      /* Mutation on result */
-      result.splice(index, 1, {
+    case MOVE_TODO:
+      const todo = state[action.todoId];
+      const newTodo = {
         ...todo,
-        status: action.newStatus,
-        index: action.newIndex
-      }); // update todo by using splice to remove and replace
-      if (displacedIndex > -1) {
-        result.splice(displacedIndex, 1, {
-          ...displacedTodo,
-          index: todo.index
-        });
+        status: action.toStatus,
+        index: action.toIndex
+      };
+
+      const onSameIndexAndStatus = Object.values(state).find(
+        todo => todo.index === action.toIndex && todo.status === action.toStatus
+      );
+
+      if (onSameIndexAndStatus) {
+        return {
+          ...state,
+          [todo.id]: newTodo,
+          [onSameIndexAndStatus.id]: {
+            ...onSameIndexAndStatus,
+            index: action.fromIndex
+          }
+        };
       }
-      return result;
+
+      return { ...state, [todo.id]: newTodo };
     default:
       return state;
   }

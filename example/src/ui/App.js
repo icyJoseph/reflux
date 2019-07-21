@@ -6,19 +6,20 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Header from "./components/Header";
 import Container from "./components/Todos";
 import TodoCounter from "./components/TodoCounter";
-
-import { CHANGE_TODO_STATUS } from "../reducers/todos";
+import { MOVE_TODO } from "../reducers/todos";
 
 function handleOnDragEnd(result) {
-  console.log("onDragEnd", result);
-  if (!result.destination) {
-    return {};
-  }
+  const { draggableId: todoId, destination, source } = result;
+
+  if (!destination) return {};
+
   return {
-    type: CHANGE_TODO_STATUS,
-    todoId: result.draggableId,
-    newStatus: result.destination.droppableId,
-    newIndex: result.destination.index
+    type: MOVE_TODO,
+    todoId,
+    fromStatus: source.droppableId,
+    fromIndex: source.index,
+    toStatus: destination.droppableId,
+    toIndex: destination.index
   };
 }
 

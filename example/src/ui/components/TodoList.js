@@ -1,23 +1,11 @@
 import React from "react";
 
 import { Droppable } from "react-beautiful-dnd";
-import { useConnect } from "reflux";
-
-import reducer from "../../reducers/todos";
 
 import Todo from "./Todo";
 
-import initialState from "../../data/mock";
-
-const selectTodosByStatus = listStatus => state =>
-  state
-    .filter(({ status }) => status === listStatus)
-    .sort((a, b) => a.index - b.index);
-
-export function TodoList({ status }) {
-  const selector = React.useCallback(selectTodosByStatus(status), [status]);
-  const todos = useConnect({ reducer, initialState, selector }); // bad pattern, creates 4 reducers :D
-  console.log(todos);
+export function TodoList({ status, todos = [] }) {
+  const sortedTodos = todos.sort((a, b) => a.index - b.index);
 
   return (
     <div
@@ -37,8 +25,8 @@ export function TodoList({ status }) {
               style={{ minHeight: "250px", paddingBottom: "8px" }}
               {...provided.droppableProps}
             >
-              {todos.map(({ id, ...todo }, index) => (
-                <Todo key={`${id}${status}`} id={id} index={index} {...todo} />
+              {sortedTodos.map(({ id, index, ...todo }) => (
+                <Todo key={id} id={id} index={index} {...todo} />
               ))}
             </div>
             {provided.placeholder}
