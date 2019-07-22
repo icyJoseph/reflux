@@ -14,7 +14,7 @@ Since reducers only recalculate for certain actions, it is guaranteed that the p
 
 Order in highest priority:
 
-- Refine the API. Should Connect be a HoC at all? Perhaps all of the API should be based on Hooks.
+- ~~Refine the API. Should Connect be a HoC at all? Perhaps all of the API should be based on Hooks.~~
 
 > A new API has been defined, for now named `useConnect`
 
@@ -26,9 +26,9 @@ Order in highest priority:
 
 - Study whether or not to reimplment the Global Store.
 
-- Study whether or not to allow only one child in Connect or to make turn the it into redux connect.
+- ~~Study whether or not to allow only one child in Connect or to make turn the it into redux connect.~~
 
-- One Selector per child?
+- ~~One Selector per child?~~
 
 ## About the Implementation
 
@@ -48,7 +48,7 @@ Reflux has four APIs.
 
 Wrap your application (or a sub-section of it) with a `Provider` to gain access to the Reflux context.
 
-This makes it possible invoke the other two APIs: `useNotify` and `Connect`.
+This makes it possible invoke the other two APIs: `useNotify` and `useConnect`.
 
 Provider takes in zero props!
 
@@ -57,26 +57,6 @@ Provider takes in zero props!
   <App />
 </Provider>
 ```
-
-### Connect [deprecated - deleting soon]
-
-> React Component
-
-Adds itself as participant to the bus, and feeds new props into its children.
-
-Takes in three props, `reducer`, `initialState` and `selector`.
-
-> It performs heavy memoization.
-
-Since a reducer is used, if the notification coming from the bus does not concern the reducer, the same state is returned. This state is a dependency used on `useMemo` when calculating the result of `selector(state)`.
-
-In turn the result of `selector(state)` is used to memoize the children rendered by Connect.
-
-> The goal is to only render the children again if their selector(state) result has changed
-
-> If the props passed to children change, then we render them again
-
-> Notice that the Context API is not used to broadcast the changes
 
 ### useConnect
 
